@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Castillo</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .castle {
+            margin-top: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tu Castillo</h1>
+    <div class="castle">
+        <img src="https://link_a_tu_imagen_de_castillo.png" alt="Castillo" width="200">
+        <p>Nivel del castillo: <span id="nivel-castillo">1</span></p>
+        <p>Oro: <span id="oro">100</span></p>
+        <button onclick="mejorarCastillo()">Mejorar Castillo</button>
+    </div>
+
+    <script>
+        let nivelCastillo = 1;
+        let oro = 100;
+
+        function mejorarCastillo() {
+            if (oro >= 50) {
+                oro -= 50;
+                nivelCastillo += 1;
+                document.getElementById('nivel-castillo').textContent = nivelCastillo;
+                document.getElementById('oro').textContent = oro;
+                alert('Has mejorado tu castillo al nivel ' + nivelCastillo);
+            } else {
+                alert('No tienes suficiente oro');
+            }
+        }
+
+        Telegram.WebApp.onEvent('main_button_pressed', () => {
+            alert("Botón principal de Telegram presionado");
+        });
+    </script>
+</body>
+</html>
